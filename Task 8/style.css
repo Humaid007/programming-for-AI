@@ -1,0 +1,38 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #e0f7fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+  }
+  
+  .container {
+    text-align: center;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  }
+  
+  #joke-box {
+    margin: 20px 0;
+    font-size: 1.2em;
+    color: #333;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #00b894;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #019875;
+  }
+  

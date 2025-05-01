@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Random Joke App</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>😂 Random Joke App</h1>
+    
+    <div id="joke-box">Click the button to see a joke!</div>
+    
+    <button onclick="loadJoke()">Get Random Joke</button>
+  </div>
+
+  <script>
+    function loadJoke() {
+      fetch("/joke")
+        .then(response => response.json())
+        .then(data => {
+          document.getElementById("joke-box").textContent = data.joke;
+        });
+    }
+  </script>
+</body>
+</html>
