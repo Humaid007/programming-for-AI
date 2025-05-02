@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hotel Chatbot</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <div class="chat-container">
+        <h2>🏨 Welcome to Sunshine Hotel</h2>
+        <div id="chat-box"></div>
+        <input type="text" id="user-input" placeholder="Ask me about our hotel...">
+        <button onclick="sendMessage()">Send</button>
+
+        <!-- Suggested Questions -->
+        <div id="suggestions">
+            <p>Try asking:</p>
+            <button onclick="autoAsk('What are your room prices?')">Room Prices</button>
+            <button onclick="autoAsk('Do you have free Wi-Fi?')">Wi-Fi</button>
+            <button onclick="autoAsk('What amenities do you offer?')">Amenities</button>
+            <button onclick="autoAsk('Where is your hotel located?')">Location</button>
+        </div>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            const chatBox = document.getElementById("chat-box");
+
+            if (!userInput.trim()) return;
+
+            chatBox.innerHTML += `<div class="user">You: ${userInput}</div>`;
+
+            fetch(`/get?msg=${userInput}`)
+                .then(response => response.json())
+                .then(data => {
+                    chatBox.innerHTML += `<div class="bot">Bot: ${data.response}</div>`;
+                    document.getElementById("user-input").value = "";
+                    chatBox.scrollTop = chatBox.scrollHeight;
+                });
+        }
+
+        function autoAsk(question) {
+            document.getElementById("user-input").value = question;
+            sendMessage();
+        }
+    </script>
+</body>
+</html>
